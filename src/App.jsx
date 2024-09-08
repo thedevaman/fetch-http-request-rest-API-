@@ -125,8 +125,8 @@ const App = () =>{
                 marginTop:'15px',
                 borderRadius:'5px',
               }}>
-                <h3>User Id: 1</h3>
-                <p style={{margin:'0'}}><b>Title:</b> non esse culpa molestiae omnis sed optio</p>
+                <h3>User Id: {arraytitle.id}</h3>
+                <p style={{margin:'0'}}><b>Title:</b> {arraytitle.title}</p>
               </div>
             ))
           }
