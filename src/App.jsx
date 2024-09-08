@@ -9,6 +9,7 @@ const App = () =>{
 
  useEffect(()=>{
   fetchData()
+  fetchTitle()
  },[])//this effect called dom is ready
 
   const fetchData= ()=>{
