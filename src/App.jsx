@@ -2,7 +2,9 @@ import {useState,useEffect} from 'react'
 import 'font-awesome/css/font-awesome.min.css'
 const App = () =>{
  const [data,setData] = useState([])
+ const [title,setTitle] = useState([])
  const [loader,setLoader] = useState(false)
+ const [titleloader,setTitleLoader] = useState(false)
 
 
  useEffect(()=>{
@@ -26,11 +28,30 @@ const App = () =>{
 
     })
   }
+
+
+  const fetchTitle = ()=>{
+    setTitleLoader(true)
+    fetch('https://jsonplaceholder.typicode.com/albums')
+    
+    .then((response)=>response.json())
+
+    .then((arraytitle)=>{
+     setTitle(arraytitle)
+     setTitleLoader(false)
+    })
+    .catch((error)=>{
+      setTitleLoader(false)
+    })
+    
+  }
   return(
-    <div> 
+    <div style={{
+      display:"flex"
+    }}> 
         <div style={{
-          width:'70%',
-          margin:'0 auto'
+          width:'50%',
+          margin:'0'
         }}>
           <h1 style={{textAlign:'center'}}>Http Request</h1>
             <button 
@@ -77,6 +98,38 @@ const App = () =>{
 
               ))
            }
+        </div>
+        <div style={{
+          width:'50%',
+          margin:'0 0 0 10px',
+        }}>
+          <h1 style={{textAlign:'center'}}>Practice Fetch Data</h1>
+          <button
+          onClick={fetchTitle}
+          style={{
+            border:'none',
+            padding:'15px',
+            background:'#009688',
+            color:'white',
+            fontWeight:600,
+            fontSize:'20px',
+            borderRadius:'5px'
+          }}>Load Data</button>
+          <center>{titleloader &&<h1><i className="fa fa-refresh fa-spin" aria-hidden="true"></i></h1>}</center>
+          {
+            title.map((arraytitle,indextitle)=>(
+              <div key={indextitle} style={{
+                boxShadow:'0 0 10px gray',
+                padding:'15px',
+                marginTop:'15px',
+                borderRadius:'5px',
+              }}>
+                <h3>User Id: 1</h3>
+                <p style={{margin:'0'}}><b>Title:</b> non esse culpa molestiae omnis sed optio</p>
+              </div>
+            ))
+          }
+      
         </div>
     </div>
   )
